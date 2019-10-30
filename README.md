@@ -4,18 +4,6 @@ tag: MSS, 后台管理
 ---
 ## 1、使用说明
 
-### 数据mock服务启用
-```
-// 进入到server目录
-cd server
-
-// 安装依赖
-npm install
-
-// 启动mock服务
-npm run start
-
-```
 ### 前端服务启动
 ```
 // 进入根目录
@@ -25,7 +13,7 @@ cd ..
 npm install
 
 // 启动本地服务
-npm run serve
+npm run dev
 ```
 > 模块安装
 
@@ -36,7 +24,7 @@ npm install
 > 开发
 
 ``` 
-npm run serve
+npm run dev
 ```
 
 > 打包

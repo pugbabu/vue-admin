@@ -24,7 +24,10 @@ export default {
     username() {
       let user = this.$store.getters.user;
       console.log(user);
-      return user.username;
+      if (user) {
+        return user.username;
+      }
+      return '哈哈';
     }
   },
   methods: {

@@ -1,38 +1,86 @@
 <script>
-import { appStoreMixin, deviceMixin } from '@/mixins';
-import { generateOpenKeys } from '@/utils';
+import { appStoreMixin, deviceMixin } from "@/mixins";
+import { generateOpenKeys } from "@/utils";
 
 export default {
   mixins: [appStoreMixin, deviceMixin],
   props: {
     mode: {
       type: String,
-      default: 'inline'
-    },
+      default: "inline"
+    }
   },
-  data () {
+  data() {
     return {
       selectedKeys: [],
       openKeys: [],
-      cacheOpenKeys: []
+      cacheOpenKeys: [],
+      menus: [
+        {
+          id: "1",
+          icon: "table",
+          path: "/sdm",
+          name: "SDM",
+          title: "SDM",
+          children: [
+            {
+              id: "11",
+              icon: "",
+              path: "/sdm/zc",
+              name: "ZC",
+              title: "ZC"
+            },
+            {
+              id: "12",
+              icon: "",
+              path: "/sdm/cc",
+              name: "CC",
+              title: "CC"
+            }
+          ]
+        },
+        {
+          id: "2",
+          icon: "dashboard",
+          path: "/ccm",
+          name: "CCM",
+          title: "CCM",
+          children: [
+            {
+              id: "21",
+              icon: "",
+              path: "/ccm/zc",
+              name: "ZC",
+              title: "ZC"
+            },
+            {
+              id: "22",
+              icon: "",
+              path: "/ccm/cc",
+              name: "CC",
+              title: "CC"
+            }
+          ]
+        }
+      ]
     };
   },
   computed: {
-    menus() {
-      return this.$store.getters.menus;
-    },
+    // menus() {
+    //   return this.$store.getters.menus;
+    // },
     collapsed() {
       return this.$store.getters.collapsed;
     },
-    isSide () {
+    isSide() {
       return (
-        this.layoutMode === 'side' ||
-        (this.layoutMode === 'top' && this.isMobile)
+        this.layoutMode === "side" ||
+        (this.layoutMode === "top" && this.isMobile)
       );
     }
   },
   watch: {
-    collapsed (val) {
+    collapsed(val) {
       if (val) {
         this.cacheOpenKeys = [].concat(this.openKeys);
         this.openKeys = [];
@@ -40,44 +88,44 @@ export default {
         this.openKeys = this.cacheOpenKeys;
       }
     },
-    $route (val) {
+    $route(val) {
       this.updateMenu();
     }
   },
-  created () {
+  created() {
     this.updateMenu();
   },
   methods: {
-    onOpenChange (openKeys) {
+    onOpenChange(openKeys) {
       const latestOpenKey = openKeys[openKeys.length - 1];
-      const keyPath = latestOpenKey ? latestOpenKey.split('/') : [];
+      const keyPath = latestOpenKey ? latestOpenKey.split("/") : [];
       keyPath.shift();
       this.openKeys = generateOpenKeys(keyPath);
     },
-    handleMenuClick ({ item, key, keyPath }) {
+    handleMenuClick({ item, key, keyPath }) {
       this.selectedKeys = [keyPath[0]];
       this.$router.push(key);
-      this.$emit('close');
+      this.$emit("close");
     },
-    updateMenu () {
+    updateMenu() {
       // fullPath : '/customs/export/query'
       let openKeys = [];
       const { fullPath } = this.$route;
-      const keyPath = fullPath.split('/');
+      const keyPath = fullPath.split("/");
       keyPath.shift();
       keyPath.pop();
       this.selectedKeys = [fullPath];
-      
-      if (this.mode === 'inline') {
+
+      if (this.mode === "inline") {
         openKeys = generateOpenKeys(keyPath);
       }
-      
+
       this.collapsed
         ? (this.cacheOpenKeys = openKeys)
         : (this.openKeys = openKeys);
     }
   },
-  render () {
+  render() {
     const {
       isSide,
       menuTheme,
@@ -89,13 +137,13 @@ export default {
       handleMenuClick,
       onOpenChange
     } = this;
-    
+
     const menuWrapClass = [
-      'lu-menu',
-      isSide && 'lu-menu__side',
+      "lu-menu",
+      isSide && "lu-menu__side",
       `lu-menu__${menuTheme}`
     ];
-    
+
     const menuProps = {
       mode,
       openKeys,
@@ -103,42 +151,42 @@ export default {
       theme: menuTheme,
       defaultSelectedKeys: [$route.path]
     };
-    
+
     const menuEvent = {
       click: handleMenuClick,
       openChange: onOpenChange
     };
-    
+
     // 递归生成菜单
-    function generateMenu (menus) {
+    function generateMenu(menus) {
       if (menus) {
         return menus.map(menu => {
           if (menu.children && menu.children.length) {
             return (
-              <a-sub-menu key={ menu.path }>
+              <a-sub-menu key={menu.path}>
                 <span slot="title">
-                  { menu.icon && <a-icon type={ menu.icon } /> }
-                  <span>{ menu.title }</span>
+                  {menu.icon && <a-icon type={menu.icon} />}
+                  <span>{menu.title}</span>
                 </span>
-                { generateMenu(menu.children) }
+                {generateMenu(menu.children)}
               </a-sub-menu>
             );
           } else {
             return (
-              <a-menu-item key={ menu.path }>
-                { menu.icon && <a-icon type={ menu.icon } /> }
-                <span>{ menu.title }</span>
+              <a-menu-item key={menu.path}>
+                {menu.icon && <a-icon type={menu.icon} />}
+                <span>{menu.title}</span>
               </a-menu-item>
             );
           }
         });
       }
     }
-    
+
     return (
-      <div class={ menuWrapClass }>
-        <a-menu props={ menuProps } on={ menuEvent }>
-          { generateMenu(menus) }
+      <div class={menuWrapClass}>
+        <a-menu props={menuProps} on={menuEvent}>
+          {generateMenu(menus)}
         </a-menu>
       </div>
     );
@@ -146,26 +194,26 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-  .lu-menu {
-    &.lu-menu__side {
-      border-top: 1px solid #3d4348;
-      &.lu-menu__light {
-        border-top-color: rgba(61, 67, 72, 0.1);
-      }
+.lu-menu {
+  &.lu-menu__side {
+    border-top: 1px solid #3d4348;
+    &.lu-menu__light {
+      border-top-color: rgba(61, 67, 72, 0.1);
     }
   }
-  
-  .ant-menu {
-    background: transparent;
-    
-    &.ant-menu-horizontal {
-      height: 65px;
-      line-height: 65px;
-    }
-    
-    .ant-menu-inline.ant-menu-sub {
-      background: rgba(37, 37, 37, 1);
-      box-shadow: none;
-    }
+}
+
+.ant-menu {
+  background: transparent;
+
+  &.ant-menu-horizontal {
+    height: 65px;
+    line-height: 65px;
   }
+
+  .ant-menu-inline.ant-menu-sub {
+    background: rgba(37, 37, 37, 1);
+    box-shadow: none;
+  }
+}
 </style>

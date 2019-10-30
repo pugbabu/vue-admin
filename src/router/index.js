@@ -19,23 +19,22 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
-  const token = Vue.ss.get('token');
-  if (token) {
-    if (to.name === 'login') {
-      next('/');
-    } else {
-      next();
-    }
-    // NProgress.done();
-  } else {
-    if (whiteList.includes(to.name)) {
-      next();
-    } else {
-      next({path: '/login'});
+  next();
+  // const token = Vue.ss.get('token');
+  // if (token) {
+  //   if (to.name === 'login') {
+  //     next('/');
+  //   } else {
+  //     next();
+  //   }
+  // } else {
+  //   if (whiteList.includes(to.name)) {
+  //     next();
+  //   } else {
+  //     next({path: '/login'});
 
-    }
-    // NProgress.done();
-  }
+  //   }
+  // }
 });
 
 router.afterEach(() => {

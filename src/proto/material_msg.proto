@@ -1,0 +1,313 @@
+// [START declaration]
+syntax = "proto2";
+package MSS.MATERIAL;
+// [END declaration]
+
+// [START messages]
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 登录请求报文
+message LoginRequest
+{
+    optional string                          user_name                               = 1;   // 用户名
+    optional string                          password                                = 2;   // 密码
+}
+
+// 登录回复报文
+message LoginReply
+{
+    optional int32                          success                                 = 1;    // 1-成功;2-用户名/密码错误;3-无此用户
+}
+
+
+// 站点/车辆类型信息
+message LocationInfo
+{
+    optional int32                          location_id                             = 1;    // 位置ID
+    optional string                         location                                = 2;    // 位置名称
+}
+
+// 站点/车辆类型与设备类型之间关联信息
+message LocationRelationshipInfo
+{
+    optional int32                          location_id                             = 1;    // 位置ID
+    repeated string                         equipment_type_id                       = 2;    // 设备类型ID
+}
+
+// 物料类型列表
+message MaterialTypeInfo
+{
+    optional string                         material_type_id                        = 1;    // 物料类型ID
+    optional string                         material_type                           = 2;    // 物料类型名称
+}
+
+// 设备类型列表
+message EquipmentTypeInfo
+{
+    optional string                         equipment_type_id                       = 1;    // 设备类型ID
+    optional string                         equipment_type                          = 2;    // 设备类型名称
+}
+
+// 具体类型列表
+message ConcreteTypeInfo
+{
+    optional string                         concrete_type_id                            = 1;    // 具体类型ID
+    optional string                         concrete_type                               = 2;    // 具体类型名称
+}
+
+// 具体名称列表
+message ConcreteNameInfo
+{
+    optional string                         concrete_name_id                            = 1;    // 具体名称ID
+    optional string                         concrete_name                               = 2;    // 具体名称
+}
+
+// 生产厂家列表
+message ManufacturerInfo
+{
+    optional int32                          manufacturer_id                         = 1;    // 生产厂家ID
+    optional string                         manufacturer                            = 2;    // 生产厂家
+}
+
+// 装配厂家列表
+message AssembleFactoryInfo
+{
+    optional int32                          assemble_factory_id                     = 1;    // 装配厂家ID
+    optional string                         assemble_factory                        = 2;    // 装配厂家
+}
+
+// 物料类型关联信息
+message MaterialRelationshipInfo
+{
+    optional string                         material_type_id                        = 1;    // 物料类型ID
+    optional string                         equipment_type_id                       = 2;    // 设备类型ID
+    optional string                         concrete_type_id                        = 3;    // 具体类型ID
+    optional string                         concrete_name_id                        = 4;    // 具体名称ID
+    optional int32                          manufacturer_id                         = 5;    // 生产厂家ID
+    optional int32                          assemble_factory_id                     = 6;    // 装配厂家ID
+}
+
+// 物料属性列表
+message MaterialPropertyInfo
+{
+    optional int32                          material_property_id                    = 1;    // 物料属性ID
+    optional string                         material_property                       = 2;    // 物料属性
+}
+
+// 使用状态列表
+message UseStatusInfo
+{
+    optional int32                          use_status_id                           = 1;    // 使用状态ID
+    optional string                         use_status                              = 2;    // 使用状态
+}
+
+// 激活状态列表
+message ActivedStatusInfo
+{
+    optional int32                          actived_status_id                       = 1;    // 激活状态ID
+    optional string                         actived_status                          = 2;    // 激活状态
+}
+
+// 资产状态列表
+message AssetSpecificityInfo
+{
+    optional int32                          asset_specificity_id                    = 1;    // 资产状态ID
+    optional string                         asset_specificity                       = 2;    // 资产状态
+}
+
+// 重要等级列表
+message ImportanceLevelInfo
+{
+    optional int32                          importance_level_id                    = 1;    // 重要等级ID
+    optional string                         importance_level                       = 2;    // 重要等级
+}
+
+// 变更类型列表
+message ChangeTypeInfo
+{
+    optional int32                          change_type_id                         = 1;    // 变更类型ID
+    optional string                         change_type                            = 2;    // 变更类型
+}
+
+// 具体变更状态列表
+message ConcreteChangeTypeInfo
+{
+    optional int32                          concrete_change_type_id                = 1;    // 具体变更类型ID
+    optional string                         concrete_change_type                   = 2;    // 具体变更类型
+}
+
+// 变更类型与具体变更类型关联数据
+message ChangeRelationshipInfo
+{
+    optional int32                          change_type_id                        = 1;    // 变更类型ID
+    optional int32                          concrete_change_type_id               = 2;    // 具体变更类型ID
+}
+
+// 物料静态信息
+message MaterialStaticInfo
+{
+    optional int32                     serial_no                                  = 1;          // 序号
+    optional string                    material_batch_no                          = 2;          // 物料批次号
+    optional string                    material_serial_no                         = 3;          // 物料序列号
+    optional string                    concrete_name_id                           = 4;          // 物料具体名称ID
+    optional string                    memo                                       = 5;          // 物料备注
+    optional int32                     manufacturer_id                            = 6;          // 生产厂家ID
+    optional int32                     assemble_factory_id                        = 7;          // 装配厂家ID
+    optional int32                     material_property_id                       = 8;          // 物料属性
+    optional string                    executor                                   = 9;          // 录入人
+    optional string                    material_other_no                          = 10;         // 其他物料码
+    optional string                    IMTE                                       = 11;         // IMTE码
+    optional int32                     importance_level_id                        = 12;         // 重要等级
+    optional int32                     asset_specificity_id                       = 13;         // 资产属性
+    optional int32                     production_time                            = 14;         // 生产时间
+    optional float                     unit_price                                 = 15;         // 单价
+    optional string                    unit                                       = 16;         // 单位
+    optional int32                     use_time                                   = 17;         // 使用日期
+    optional float                     depreciation                               = 18;         // 折旧
+}
+
+// 物料动态信息
+message MaterialDynamicInfo
+{
+    optional int32                     serial_no                                  = 1;          // 序号 
+    optional string                    material_batch_no                          = 2;          // 物料批次号
+    optional string                    material_serial_no                         = 3;          // 物料序列号
+    optional string                    concrete_name_id                           = 4;          // 物料具体名称ID
+    optional string                    memo                                       = 5;          // 物料备注
+    optional string                    work_gang                                  = 6;          // 工班名称
+    optional int32                     total_number                               = 7;          // 数量
+    optional int32                     use_status_id                              = 8;          // 使用状态
+    optional int32                     actived_status_id                          = 9;          // 激活状态
+    optional int32                     operate_time                               = 10;         // 操作时间
+    optional int32                     ownership_location_id                      = 11;         // 所属位置ID
+    optional int32                     current_location_id                        = 12;         // 当前位置ID
+    optional string                    detail_save_place                          = 13;         // 保存位置
+    optional int32                     current_change_status                      = 14;         // 借出状态
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 物料静态数据请求报文
+message MaterialStaticInfosRequest
+{
+    optional string                         line_id                                 = 1;
+}
+
+// 物料静态数据回复报文
+message MaterialStaticInfosReply
+{
+    repeated LocationInfo                   location_infos                          = 1;    // 位置详细信息
+    repeated LocationRelationshipInfo       location_relationship_infos             = 2;    // 关联信息详细信息
+    repeated MaterialTypeInfo               material_type_infos                     = 3;    // 物料类型详细信息
+    repeated EquipmentTypeInfo              equipment_type_infos                    = 4;    // 设备类型详细信息
+    repeated ConcreteTypeInfo               concrete_type_infos                     = 5;    // 具体类型详细信息
+    repeated ConcreteNameInfo               concrete_name_infos                     = 6;    // 具体名称详细信息
+    repeated ManufacturerInfo               manufacturer_infos                      = 7;    // 生产厂家详细信息
+    repeated AssembleFactoryInfo            assemble_factory_infos                  = 8;    // 装配厂家详细信息
+    repeated MaterialRelationshipInfo       material_relationship_infos             = 9;    // 关联信息详细信息
+    repeated MaterialPropertyInfo           material_property_infos                 = 10;   // 物料属性详细信息
+    repeated UseStatusInfo                  use_status_infos                        = 11;   // 使用状态详细信息
+    repeated ActivedStatusInfo              actived_status_infos                    = 12;   // 激活状态详细信息
+    repeated AssetSpecificityInfo           asset_specificity_infos                 = 13;   // 资产状态详细信息
+    repeated ImportanceLevelInfo            importance_level_infos                  = 14;   // 重要等级详细信息
+    repeated ChangeTypeInfo                 change_type_infos                       = 15;   // 变更类型详细信息
+    repeated ConcreteChangeTypeInfo         concrete_change_type_infos              = 16;   // 具体变更类型详细信息
+    repeated ChangeRelationshipInfo         change_relationship_infos               = 17;   // 变更关系详细信息
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 出入库功能设备类型列表数据请求报文
+message InputTypeListRequest
+{
+    optional string                         location_id                             = 1;    // 当前选择站点
+}
+
+// 当前选择站点下的设备类型
+message currentEquipmentList
+{
+    optional string                         material_type_id                        = 1;    // 当前选择站点下的物料类型ID
+    optional string                         material_type                           = 2;    // 当前选择站点下的物料类型名称
+    repeated string                         equipment_type_id                       = 3;    // 当前选择站点下的设备类型ID
+    repeated string                         equipment_type                          = 4;    // 当前选择站点下的设备类型名称
+}
+
+// 出入库功能设备类型列表数据回复报文
+message InputTypeListReply
+{
+    repeated currentEquipmentList           type_infos                              = 1;    // 位置详细信息
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 出入库功能添加物料界面具体类型列表数据请求报文
+message AddMaterialConcreteTypeListRequest
+{
+    optional string                         location_id                             = 1;    // 当前选择站点ID
+    optional string                         equipment_id                            = 2;    // 当前选择设备类型ID
+}
+
+// 出入库功能添加物料界面具体类型列表数据回复报文
+message AddMaterialConcreteTypeListReply
+{
+    repeated ConcreteTypeInfo               concrete_type_infos                     = 1;    // 具体类型详细信息
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 出入库功能添加物料界面具体名称列表数据请求报文
+message AddMaterialConcreteNameListRequest
+{
+    optional string                         concrete_type                           = 1;    // 当前选择物料具体类型ID
+}
+
+// 出入库功能添加物料界面具体名称列表数据回复报文
+message AddMaterialConcreteNameListReply
+{
+    repeated ConcreteNameInfo               concrete_name_infos                     = 1;    // 具体名称详细信息
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 出入库功能添加物料界面生产/装配厂家列表数据请求报文
+message AddMaterialVenderInfosRequest
+{
+    optional string                         concrete_name                           = 1;    // 当前选择物料具体名称ID
+}
+
+// 出入库功能添加物料界面生产/装配厂家列表数据回复报文
+message AddMaterialVenderInfosReply
+{
+    repeated ManufacturerInfo               manufacturer_infos                      = 1;    // 生产厂家详细信息
+    repeated AssembleFactoryInfo            assemble_factory_infos                  = 2;    // 装配厂家详细信息
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 出入库功能添加物料请求报文
+message AddMaterialRequest
+{
+    optional string                    concrete_name_id                                   = 1;          // 物料具体名称ID
+    optional string                    memo                                               = 2;          // 物料备注
+    optional int32                     manufacturer_id                                    = 3;          // 生产厂家ID
+    optional int32                     assemble_factory_id                                = 4;          // 装配厂家ID
+    optional int32                     material_property_id                               = 5;          // 物料属性
+    optional string                    executor                                           = 6;          // 录入人
+    optional string                    material_other_no                                  = 7;          // 其他物料码
+    optional string                    IMTE                                               = 8;          // IMTE码
+    optional int32                     importance_level_id                                = 9;          // 重要等级
+    optional int32                     asset_specificity_id                               = 10;         // 资产属性
+    optional int32                     production_time                                    = 11;         // 生产时间
+    optional float                     unit_price                                         = 12;         // 单价
+    optional string                    unit                                               = 13;         // 单位
+    optional int32                     use_time                                           = 14;         // 使用日期
+    optional float                     depreciation                                       = 15;         // 折旧
+    optional string                    work_gang                                          = 16;         // 工班名称
+    optional int32                     total_number                                       = 17;         // 数量
+    optional int32                     use_status_id                                      = 18;         // 使用状态
+    optional int32                     ownership_location_id                              = 19;         // 所属位置ID
+    optional int32                     current_location_id                                = 20;         // 当前位置ID
+    optional string                    detail_save_place                                  = 21;         // 保存位置
+}
+
+// 出入库功能添加物料回复报文
+message AddMaterialReply
+{
+    optional int32                     success                                            = 1;    // 0-查询失败；1-查询成功
+    repeated MaterialDynamicInfo       dynamic_info                                       = 2;    // 物料动态信息
+}
+// [END messages]

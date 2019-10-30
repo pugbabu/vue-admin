@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "proto": "pbjs -t json-module -w commonjs -o src/proto/proto.js  src/proto/*.proto"
   },
   "dependencies": {
     "ant-design-vue": "^1.4.3",
     "axios": "^0.19.0",
     "core-js": "^3.3.2",
     "echarts": "^4.4.0",
+    "google-protobuf": "^3.10.0",
+    "protobufjs": "^6.8.8",
     "vue": "^2.6.10",
     "vue-ls": "^3.2.1",
     "vue-router": "^3.1.3",
