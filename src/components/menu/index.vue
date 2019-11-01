@@ -17,51 +17,28 @@ export default {
       cacheOpenKeys: [],
       menus: [
         {
+          id: '1',
+          icon: 'dashboard',
+          name: 'permission',
+          title: '权限管理',
+          path: '/permission'
+        },
+        {
           id: "1",
           icon: "table",
-          path: "/sdm",
-          name: "SDM",
-          title: "SDM",
+          path: "/device",
+          name: "device",
+          title: "设备监控",
           children: [
             {
               id: "11",
               icon: "",
-              path: "/sdm/zc",
-              name: "ZC",
-              title: "ZC"
-            },
-            {
-              id: "12",
-              icon: "",
-              path: "/sdm/cc",
-              name: "CC",
-              title: "CC"
+              path: "/device/ats",
+              name: "ats",
+              title: "ATS"
             }
           ]
         },
-        {
-          id: "2",
-          icon: "dashboard",
-          path: "/ccm",
-          name: "CCM",
-          title: "CCM",
-          children: [
-            {
-              id: "21",
-              icon: "",
-              path: "/ccm/zc",
-              name: "ZC",
-              title: "ZC"
-            },
-            {
-              id: "22",
-              icon: "",
-              path: "/ccm/cc",
-              name: "CC",
-              title: "CC"
-            }
-          ]
-        }
       ]
     };
   },
@@ -148,7 +125,7 @@ export default {
       mode,
       openKeys,
       selectedKeys,
-      theme: menuTheme,
+      theme: 'menuTheme',
       defaultSelectedKeys: [$route.path]
     };
 

@@ -1,0 +1,76 @@
+syntax = "proto2";
+package MSS.ATS;
+
+// 每个ATS主机的状态
+message HostStat
+{
+    optional uint32         host_id     = 1;    // 设备ID
+    optional string         host_name   = 2;    // 设备名
+    
+    optional uint32         hb_status   = 3;    // 主备状态
+    optional uint32         mon_status  = 4;    // 主机状态
+    optional uint32         cpu_rate    = 5;    // CPU占用率
+    optional uint32         vm_rate     = 6;    // 内存占用率
+    repeated uint32         link_stats  = 7;    // 网络连接状态
+
+    optional bool           is_online   = 8;    // 该设备是否在线
+}
+
+// ATS client发给agent的主机状态请求报文
+message HostStatRequest
+{
+    optional uint32         msg_seq     = 1;    // 序列号
+}
+
+// ATS agent回复给client的主机状态数据
+message HostStatReply
+{
+    optional uint32         msg_seq     = 1;    // 序列号
+
+    optional bool           is_online   = 2;    // 数据是否在线
+    repeated HostStat       host_stats  = 3;    // ATS主机状态
+}
+
+// ATS client发给agent的OpLog数据的订阅请求报文
+message OpLogRequest
+{
+    optional bool           enabled     = 1;    // true表示订阅数据，false表示取消订阅
+}
+
+// ATS agent推送给client的OpLog数据
+message OpLogReply
+{
+    optional uint32         msg_seq     = 1;    // 序列号
+    optional uint32         source_id   = 2;    // 命令来源：1：LCW；2：中心ATS；3：车站ATS
+    optional uint32         op_type     = 3;    // 操作类型
+    optional uint32         op_sub_type = 4;    // 操作子类型
+    optional string         object_name = 5;    // 操作对象的名称
+    optional uint32         op_sequence = 6;    // 操作序列号
+	optional uint32         op_transaction_id = 7;    // 操作事务号
+    optional string         user_name   = 8;    // 用户名字符串
+    optional uint32         result_code = 9;    // 操作结果，0表示成功，1表示失败
+    optional uint32         detail      = 10;    // 具体错误代码
+	optional uint64         op_datetime = 11;    // 操作的时间
+	optional uint32         op_mode     = 12;    // 操作说明
+}
+
+// ATS client发给agent的版本数据请求
+message VersionRequest
+{
+    optional uint32         msg_seq     = 1;    // 序列号
+}
+
+// ATS agent推送给client的版本数据
+message VersionReply
+{
+    optional uint32         msg_seq     = 1;    // 序列号
+
+    optional string         sys_ver     = 2;    // 系统版本
+    optional string         data_ver    = 3;    // 数据版本
+    optional string         intf_ver    = 4;    // 接口版本
+    optional string         ifs_ver     = 5;    // 外部接口版本
+    optional string         hus_ver     = 6;    // 工具版本
+    optional string         bistar_ver  = 7;    // 配套的BiSTAR版本
+}
+
+

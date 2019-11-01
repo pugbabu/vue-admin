@@ -1,4 +1,4 @@
-export default [
+module.exports =  [
   {
     /**
      * @description 登录接口
@@ -9,6 +9,21 @@ export default [
       url: '/material_login',
       requestTmp: 'LoginRequest',
       responseTmp: 'LoginReply'
+    },
+    
+  },
+  {
+    hostStatus:{
+      url: '/ats/hoststat',
+      requestTmp: 'HostStatRequest',
+      responseTmp: 'HostStatReply'
+    }
+  },
+  {
+    oplog: {
+      url: '/ats/oplog',
+      requestTmp: 'OpLogRequest',
+      responseTmp: 'OpLogReply'
     }
   }
 ];

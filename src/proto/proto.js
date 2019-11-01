@@ -7,6 +7,175 @@ var $root = ($protobuf.roots["default"] || ($protobuf.roots["default"] = new $pr
 .addJSON({
   MSS: {
     nested: {
+      ATS: {
+        nested: {
+          HostStat: {
+            fields: {
+              hostId: {
+                type: "uint32",
+                id: 1
+              },
+              hostName: {
+                type: "string",
+                id: 2
+              },
+              hbStatus: {
+                type: "uint32",
+                id: 3
+              },
+              monStatus: {
+                type: "uint32",
+                id: 4
+              },
+              cpuRate: {
+                type: "uint32",
+                id: 5
+              },
+              vmRate: {
+                type: "uint32",
+                id: 6
+              },
+              linkStats: {
+                rule: "repeated",
+                type: "uint32",
+                id: 7,
+                options: {
+                  packed: false
+                }
+              },
+              isOnline: {
+                type: "bool",
+                id: 8
+              }
+            }
+          },
+          HostStatRequest: {
+            fields: {
+              msgSeq: {
+                type: "uint32",
+                id: 1
+              }
+            }
+          },
+          HostStatReply: {
+            fields: {
+              msgSeq: {
+                type: "uint32",
+                id: 1
+              },
+              isOnline: {
+                type: "bool",
+                id: 2
+              },
+              hostStats: {
+                rule: "repeated",
+                type: "HostStat",
+                id: 3
+              }
+            }
+          },
+          OpLogRequest: {
+            fields: {
+              enabled: {
+                type: "bool",
+                id: 1
+              }
+            }
+          },
+          OpLogReply: {
+            fields: {
+              msgSeq: {
+                type: "uint32",
+                id: 1
+              },
+              sourceId: {
+                type: "uint32",
+                id: 2
+              },
+              opType: {
+                type: "uint32",
+                id: 3
+              },
+              opSubType: {
+                type: "uint32",
+                id: 4
+              },
+              objectName: {
+                type: "string",
+                id: 5
+              },
+              opSequence: {
+                type: "uint32",
+                id: 6
+              },
+              opTransactionId: {
+                type: "uint32",
+                id: 7
+              },
+              userName: {
+                type: "string",
+                id: 8
+              },
+              resultCode: {
+                type: "uint32",
+                id: 9
+              },
+              detail: {
+                type: "uint32",
+                id: 10
+              },
+              opDatetime: {
+                type: "uint64",
+                id: 11
+              },
+              opMode: {
+                type: "uint32",
+                id: 12
+              }
+            }
+          },
+          VersionRequest: {
+            fields: {
+              msgSeq: {
+                type: "uint32",
+                id: 1
+              }
+            }
+          },
+          VersionReply: {
+            fields: {
+              msgSeq: {
+                type: "uint32",
+                id: 1
+              },
+              sysVer: {
+                type: "string",
+                id: 2
+              },
+              dataVer: {
+                type: "string",
+                id: 3
+              },
+              intfVer: {
+                type: "string",
+                id: 4
+              },
+              ifsVer: {
+                type: "string",
+                id: 5
+              },
+              husVer: {
+                type: "string",
+                id: 6
+              },
+              bistarVer: {
+                type: "string",
+                id: 7
+              }
+            }
+          }
+        }
+      },
       MATERIAL: {
         nested: {
           LoginRequest: {

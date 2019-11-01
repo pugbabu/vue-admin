@@ -70,7 +70,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 页面存放地址，每个页面对应一个路由
 
 *plugins
-存放页面插件，包含echarts图形插件、ant-design-vue插件、vue-ls缓存插件
+存放页面插件，包含ant-design-vue插件、vue-ls缓存插件
 
 *proto
 存放proto文件

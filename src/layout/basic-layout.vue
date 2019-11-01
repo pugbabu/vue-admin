@@ -1,10 +1,10 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger">
+  <a-layout id="component-layout">
     <layout-slider />
     <a-layout>
       <layout-header />
       <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+        style=" background: '#fff';height:100%;overflow:auto;"
       >
         <div class="layout-content--inner">
           <transition name="page-transition">
@@ -15,7 +15,7 @@
       <!-- <transition name="page-transition">
         <view-layout />
       </transition> -->
-      <layout-footer />
+      <!-- <layout-footer /> -->
     </a-layout>
   </a-layout>
 </template>
@@ -43,7 +43,13 @@ export default {
 };
 </script>
 <style>
-#components-layout-demo-custom-trigger .trigger {
+.layout-content--inner{
+  height: 100%;
+}
+#component-layout{
+  height: 100%;
+}
+#component-layout .trigger {
   font-size: 18px;
   line-height: 64px;
   padding: 0 24px;
@@ -51,15 +57,15 @@ export default {
   transition: color 0.3s;
 }
 
-#components-layout-demo-custom-trigger .trigger:hover {
+#component-layout .trigger:hover {
   color: #1890ff;
 }
 
-#components-layout-demo-custom-trigger .logo {
+/* #component-layout .logo {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
-}
+} */
 .page-transition-enter {
   opacity: 0;
 }

@@ -23,11 +23,7 @@ export default {
   computed: {
     username() {
       let user = this.$store.getters.user;
-      console.log(user);
-      if (user) {
-        return user.username;
-      }
-      return '哈哈';
+      return user;
     }
   },
   methods: {

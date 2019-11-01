@@ -1,0 +1,66 @@
+.zh-menu{
+    height: calc(100% - 80px);
+    background-color: var(--dark1) !important;
+}
+.zh-menu .ant-menu-item, .ant-menu-submenu-title {  
+    text-align: left;
+    padding: 0px 16px 0px 16px !important;
+    margin: 0px 0px 8px 0px !important;
+    height: 48px !important;
+    font-family: var(--fontFamily);
+    font-size: var(--emphasis) !important;
+    line-height: 48px !important;
+    vertical-align: middle;
+}
+.zh-menu .ant-menu-item-selected,.ant-menu-item-selected {
+    background-color: #4A4A4A !important;
+
+}
+.zh-menu .ant-menu-submenu-popup{
+    padding: 0 !important;
+}
+
+.ant-layout-sider-collapsed .ant-menu-item span, .ant-layout-sider-collapsed .ant-menu-submenu-title span{
+    opacity: 0;
+}
+.ant-tooltip-innerimg {
+    opacity: 0 !important;
+}
+
+/******右侧箭头的颜色******/
+.zh-menu .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::after,
+.zh-menu .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::before {
+    background: var(--light1) !important;
+    color: var(--light1) !important
+}
+.zh-menu .zh-menu-title {
+    padding-left: 4px;
+}
+.ant-menu-inline-collapsed .zh-menu-title{
+    
+}
+.zh-menu .ant-menu-dark.ant-menu-inline {
+    padding-top: 60px;
+}
+.zh-menu .ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+    color: var(--light1);
+    background: var(--dark1) !important;
+    box-shadow: unset !important;
+} 
+
+    
+.zh-menu .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background: var(--dark1);
+    box-shadow: none;       
+}
+    
+.zh-menu .ant-menu-dark .ant-menu-inline.ant-menu-sub > .ant-menu-item {
+    padding-left: 48px !important;
+}
+/******链接颜色******/
+.zh-menu .ant-menu-dark .ant-menu-item, .ant-menu-dark .ant-menu-item-group-title, .ant-menu-dark .ant-menu-item > a {
+    color: var(--light1)
+}
+
+
+

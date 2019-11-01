@@ -134,18 +134,10 @@ export default {
           }, 600);
           return;
         }
-        this.$api.USER_API.login({
-          username,
-          password
-        }).then(res => {
-          if (res.code == 200) {
-            this.$store.commit('setUser', res.data.user);
-            this.$store.commit('setMenus', res.data.menus);
-            this.$store.commit('setToken', res.data.token);
-            this.loginSuccess();
-          
-          }
-        });
+        // 调用登录接口
+        this.$store.commit('setUser', '大头大头');
+        this.$store.commit('setToken', '79faf82271944fe38c4f1d99be71bc9c');
+        this.loginSuccess();
       });
     },
     loginSuccess (res) {

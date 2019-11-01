@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>报警</title>
+    <desc>Created with Sketch.</desc>
+    <g id="style" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-652.000000, -288.000000)" fill-rule="nonzero">
+            <g id="报警" transform="translate(652.000000, 288.000000)">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                <path d="M3,23 L21,23" id="Line" stroke="#F39800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M6,23 L18,23 L18,13 C18,9.6862915 15.3137085,7 12,7 C8.6862915,7 6,9.6862915 6,13 L6,23 Z" id="Rectangle" stroke="#F39800" stroke-width="2"></path>
+                <polyline id="Path-17" stroke="#F39800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="13 11 10 14 14 14 11 17"></polyline>
+                <path d="M1,14 L3,14" id="Line-2" stroke="#F39800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M11,3 L13,3" id="Line-2" stroke="#F39800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(12.000000, 3.000000) rotate(90.000000) translate(-12.000000, -3.000000) "></path>
+                <path d="M18.7691113,6.21807128 L20.7691113,6.21807128" id="Line-2" stroke="#F39800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(19.769111, 6.218071) rotate(135.000000) translate(-19.769111, -6.218071) "></path>
+                <path d="M3.22182541,6.22182541 L5.22182541,6.22182541" id="Line-2" stroke="#F39800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(4.221825, 6.221825) rotate(45.000000) translate(-4.221825, -6.221825) "></path>
+                <path d="M11.9,0.9 L11.9,0.9" id="Line-2" stroke="#F39800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(12.400000, 1.400000) rotate(90.000000) translate(-12.400000, -1.400000) "></path>
+                <path d="M21,14 L23,14" id="Line-2" stroke="#F39800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(22.000000, 14.000000) rotate(180.000000) translate(-22.000000, -14.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

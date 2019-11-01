@@ -1,13 +1,14 @@
 <template>
   <div :class="['logo-wrapper', `logo-${menuTheme}`, collapsed && 'is-collapsed']">
     <img
+      v-if="!collapsed"
       class="logo"
-      src="https://cn.vuejs.org/images/logo.png"
+      src="http://uia.unittec.com/20190628202113.png"
       alt="logo"
     >
     <span
-      v-if="!collapsed"
-      class="title"
+      v-if="collapsed"
+      class="text"
     >众合科技</span>
   </div>
 </template>
@@ -26,15 +27,18 @@ export default {
 </script>
 <style lang="less" scoped>
   .logo-wrapper {
-    height: 64px;
-    line-height: 64px;
-    padding: 0 24px;
+    height: 80px;
+    line-height: 80px;
+    // padding: 0 24px;
     box-sizing: border-box;
     text-align: left;
     overflow: hidden;
     user-select: none;
     transition: all 0.3s;
     display: flex;
+    background: #e0e0e0;
+    align-items: center;
+    justify-content: center;
     
     &.is-collapsed {
       padding: 0;
@@ -50,18 +54,19 @@ export default {
     .logo {
       display: inline-block;
       vertical-align: middle;
-      width: 45px;
+      height: 30px;
+      width: auto;
     }
     
-    .title {
+    .text {
       // display: inline-block;
       vertical-align: middle;
-      margin-left: 12px;
-      margin-right: 16px;
-      font-size: 18px;
-      font-weight: bolder;
+      // margin-left: 12px;
+      // margin-right: 16px;
+      font-size: 16px;
+      font-weight: bold;
       font-family: "Ink Free";
-      color: #fff;
+      color: #333;
     }
   }
 </style>

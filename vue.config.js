@@ -36,12 +36,11 @@ module.exports = {
 
   devServer: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:4000', // 后端服务器
-        ws: false,
+      '/ats': {
+        target: 'http://192.168.156.46:9005', // 后端服务器
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/ats': '/ats'
         }
       }
     }

@@ -2,10 +2,13 @@ import axios from 'axios';
 import protoRoot from '@/proto/proto';
 import protobuf from 'protobufjs';
 import apiConfig from './config';
+// import apiConfig from './config1';
+
 import Notification from 'ant-design-vue/es/notification';
 const createRequest = () => {
   return axios.create({
     timeout: 10000,
+    method: 'post',
     headers: {
       "X-Requested-With": "XMLHttpRequest",
       "Content-Type": "application/octet-stream,charset=UTF-8",
@@ -14,7 +17,14 @@ const createRequest = () => {
   });
 };
 
-
+// const Axios = axios.create({
+//   timeout: 10000,
+//   headers: {
+//     "X-Requested-With": "XMLHttpRequest",
+//     "Content-Type": "application/octet-stream,charset=UTF-8",
+//   },
+//   responseType: "arraybuffer"
+// });
 
 
 
@@ -24,9 +34,8 @@ const request = (option) => {
   let responseProto = protoRoot.lookupType(option.responseTmp);
   let Axios = createRequest();
   Axios.interceptors.request.use(config => {
-    console.log(config);
     config.url = option.url;
-    config.method = config.method ? config.method : 'get';
+    // config.method = config.method ? config.method : 'post';
     let data = Object.assign({}, config.data);
     config.data = new Blob([requetProto.encode(requetProto.create(data)).finish()], { type: 'buffer' });
     return config;
@@ -55,9 +64,10 @@ const getApiMap = ()=>{
     let val = s[key];
     apiObj[key]= request(val);
   });
+  console.log(apiObj);
   return apiObj;
 };
 
-getApiMap();
+
 
 export default getApiMap();

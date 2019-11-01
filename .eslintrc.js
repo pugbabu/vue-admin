@@ -22,7 +22,8 @@ module.exports = {
      // 代码结尾带分号
     'semi': ['error', 'always'],
     'vue/html-self-closing': 'off',
-    'vue/name-property-casing': 'off'
+    'vue/name-property-casing': 'off',
+    'vue/attribute-hyphenation': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint'

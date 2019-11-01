@@ -1,0 +1,64 @@
+:root{
+
+  --dark1: #333333;
+
+  --dark2: #444444;
+
+  --dark3: #666666;
+
+  --dark4: #999999;
+
+  --light4: #CCCCCC;
+
+  --light3: #EEEEEE;
+
+  --light2: #FAFAFA;
+
+  --light1: #FFFFFF;
+
+  --unittecOrange: #F39800;
+
+  --unittecBlack: #333333;
+
+  --unittecBlue: #0071F2;
+
+  --alarm1: #E50000;
+
+  --alarm2: #FF8000;
+
+  --alarm3: #FFBF00;
+
+  --alarm4: #FFF94C;
+
+  --normal: #37AB60;
+
+  --offline: #999999;
+
+  --buttonHover: #0059F3;
+
+  --buttonClicked: #0041F2;
+
+  /******以下为字号******/
+  --title: 24px;
+
+  --emphasis: 16px;
+
+  --text: 14px;
+
+  --reference: 12px;
+
+  --smallReference: 8px;
+
+  /******以下为字体******/
+  --fontFamily: Source Han Sans CN;
+
+  /******边框阴影******/
+  --boxShadow: 0 2px 4px 0 var(--light3), inset 0 1px 3px 0 var(--light3);
+  
+  --halfUnittecBlue: rgba(0,113,242,0.5);
+
+  --tenpercentUnittecBlue: rgba(0,113,242,0.1);
+
+  --tenpercentDark4: rgba(153,153,153,0.1)
+
+}

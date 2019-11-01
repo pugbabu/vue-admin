@@ -1,0 +1,52 @@
+.navibar-style{
+    height: calc(100% - 80px);
+}
+.navibar-style .ant-menu-item, .ant-menu-submenu-title {  
+    text-align: left;
+    padding: 0px 16px 0px 16px !important;
+    margin: 0px 0px 8px 0px !important;
+    height: 48px !important;
+    font-family: var(--fontFamily);
+    font-size: var(--emphasis) !important;
+    line-height: 48px !important;
+    vertical-align: middle;
+}
+
+/******右侧箭头的颜色******/
+.navibar-style .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::after,
+.navibar-style .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow::before {
+    background: var(--light1) !important;
+    color: var(--light1) !important
+}
+.navibar-style .menuSpan {
+    padding-left: 4px;
+}
+.ant-menu-inline-collapsed .menuSpan{
+    
+}
+.navibar-style .ant-menu-dark.ant-menu-inline {
+    padding-top: 60px;
+}
+.navibar-style .ant-menu-dark, .ant-menu-dark .ant-menu-sub {
+    color: var(--light1);
+    background: var(--dark1);
+}
+.navibar-style .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+    background-color: var(--dark2);
+}
+    
+.navibar-style .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+    background: var(--dark1);
+    box-shadow: none;       
+}
+    
+.navibar-style .ant-menu-dark .ant-menu-inline.ant-menu-sub > .ant-menu-item {
+    padding-left: 48px !important;
+}
+/******链接颜色******/
+.navibar-style .ant-menu-dark .ant-menu-item, .ant-menu-dark .ant-menu-item-group-title, .ant-menu-dark .ant-menu-item > a {
+    color: var(--light1)
+}
+
+
+
