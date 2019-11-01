@@ -49,7 +49,7 @@
           slot="opDatetime"
           slot-scope="opDatetime"
         >
-          {{ $moment(opDatetime).format('YYYY-MM-DD hh:mm:ss') }}
+          {{ opDatetime | formatTime }}
         </span>
       </a-table>
     </div>
