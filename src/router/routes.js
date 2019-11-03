@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    redirect: '/sdm/cc',
+    redirect: '/device/ats',
     component: BasicLayout,
     children: [
       {
@@ -36,12 +36,12 @@ const routes = [
         children: [
           {
             path: 'cc',
-            name: 'cc',
+            name: 'sdm-cc',
             component: () => import('@/pages/sdm/cc')
           },
           {
             path: 'zc',
-            name: 'zc',
+            name: 'sdm-zc',
             component: () => import('@/pages/sdm/zc')
 
           }
@@ -54,12 +54,12 @@ const routes = [
         children: [
           {
             path: 'cc',
-            name: 'cc',
+            name: 'ccm-cc',
             component: () => import('@/pages/ccm/cc')
           },
           {
             path: 'zc',
-            name: 'zc',
+            name: 'ccm-zc',
             component: () => import('@/pages/ccm/zc')
 
           }

@@ -1,9 +1,9 @@
 <script>
-import { appStoreMixin, deviceMixin } from "@/mixins";
+import { appStoreMixin } from "@/mixins";
 import { generateOpenKeys } from "@/utils";
 
 export default {
-  mixins: [appStoreMixin, deviceMixin],
+  // mixins: [appStoreMixin],
   props: {
     mode: {
       type: String,

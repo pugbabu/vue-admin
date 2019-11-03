@@ -49,40 +49,34 @@ npm run lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## 2、目录结构
-源代码位于src目录下，以下是src中的子目录说明：
-*api
-定义所有的接口地址
+## 2、项目结构
+```txt
++-- dist/                                   ---打包之后的dist目录
++-- public/                                 ---静态目录,/xx 直接引用，不需要public
+|   --- index.html                          ---首页入口html文件
+|   --- favicon.ico                         ---网页图标
++-- src/
++   ---/api/                                ---接口请求文件，protobuf接口先在api/config配置
++   ---assets/                              --- 资源文件
++   ---/components/                         ---组件目录，/components/base用于放公用组件
++   ---/filters/                            ---过滤器
++   ---/layout/                             ---布局方案
++   ---/mixins/                             ---mixins
++   ---/pages/                              ---页面
++   ---/plugins/                            ---项目所用插件
++   ---/proto/                              ---防止proto文件，然后项目根目录执行npm run proto，生成proto.js
++   ---/router/                             ---路由文件
++   ---/store/                              ---vuex状态管理，按不同module引入
++   ---/utils/                              ---工具js
+|   ---main.js                              ---项目入口js文件
+|   ---App.vue                              ---页面总入口
+--- babel.config.js                         ---babel配置文件，配置ant-design-vue按需引入
+--- README.md                               ---Readme
+--- package-lock.json                        ---依赖包
+--- package.json                            ---依赖包
+--- vue.config.js                           ---配置vue脚手架的文件，包含本地跨域、base url更改等
+```
 
-*assets
-资源文件，包含css、images
-
-*components
-组件存放目录
-
-*layout
-本项目的布局结构，页面都在此结构中渲染
-
-*mixins
-混合文件存放目录，多个页面有相似的方法和变量，可提取mixin
-
-*pages
-页面存放地址，每个页面对应一个路由
-
-*plugins
-存放页面插件，包含ant-design-vue插件、vue-ls缓存插件
-
-*proto
-存放proto文件
-
-*router
-路由配置文件
-
-*store
-vuex状态管理配置文件
-
-*utils
-公用js文件
 
 ## 3、技术栈
 1、vue + vue-router + axios

@@ -12,11 +12,7 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import { appStoreMixin, deviceMixin } from '@/mixins';
-import Vue from 'vue';
 export default {
-  mixins: [appStoreMixin, deviceMixin],
   data () {
     return { modalVisible: false };
   },
@@ -27,7 +23,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions('user', ['Logout']),
     handleClick ({ key }) {
       const that = this;
       if (key === 'logout') {
@@ -37,11 +32,7 @@ export default {
           okText: '注销',
           okType: 'danger',
           onOk () {
-            that.$api.USER_API.logOut().then(res => {
-              that.$store.commit('setToken', '');
-              Vue.ss.remove('token');
-              that.$router.replace('/login');
-            });
+           
            
           },
           onCancel () {

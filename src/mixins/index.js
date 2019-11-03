@@ -1,4 +1,15 @@
 
-export { default as appStoreMixin } from './appStore';
 
-export { default as deviceMixin } from './device';
+export default {
+  data() {
+    return {
+      
+    };
+  },
+  created () {
+    
+  },
+  methods: {
+    
+  }
+};

@@ -616,9 +616,6 @@ export default {
      this.logSocket = this.$socket.sendSock('ws://192.168.156.46:9005/ats/oplog', 'dsd', (res) => {
       console.log(res);
     });
-    // this.init(); 
-    // this.initWebsocket();
-    // this.getOpLog();
   },
   destroyed() {
     // readyState  0- 正在链接中 1- 已经链接并且可以通讯 2-连接正在关闭 3-连接已关闭或者没有链接成功
@@ -642,56 +639,6 @@ export default {
           console.log(res);
           // this.hostStats = res.hostStats || [];
         });
-    },
-    getOpLog() {},
-    init() {
-      let websocketHeartbeatJs = new WebsocketHeartbeatJs({
-        url: "ws://123.207.167.163:9010/ajaxchattest"
-      });
-      websocketHeartbeatJs.onopen = function() {
-        console.log("connect success");
-        websocketHeartbeatJs.send("hello server");
-      };
-      websocketHeartbeatJs.onmessage = function(e) {
-        console.log(`onmessage: ${JSON.parse(JSON.stringify(e.data))}`);
-      };
-      websocketHeartbeatJs.onreconnect = function() {
-        console.log("reconnecting...");
-      };
-      websocketHeartbeatJs.onclose = () => {
-        console.log("connect close");
-      };
-    },
-    initWebsocket() {
-      // const wsuri = `ws://192.168.156.46:9005/ats/oplog`;
-      const wsuri = `ws://123.207.167.163:9010/ajaxchattest`;
-
-      this.socket = new WebSocket(wsuri);
-      console.log(this.socket);
-      console.log(WebSocket.OPEN);
-      if (this.socket.readyState !== WebSocket.OPEN) {
-        this.socket.onopen = this.websocketonopen;
-      } else {
-        this.websocketsend();
-      }
-      this.socket.onerror = this.websocketonerror;
-      this.socket.onmessage = this.websocketonmessage;
-      this.socket.onclose = this.websocketclose;
-    },
-    websocketonopen() {
-      console.log("连接成功");
-      this.websocketsend();
-    },
-    websocketonmessage(e) {
-      console.log("数据接收111");
-      console.log(e);
-    },
-    websocketsend(Data) {
-      this.socket.send(Data);
-      console.log(`数据发送` + Data);
-    },
-    websocketclose(e) {
-      console.log("断开连接", e);
     },
 
   }

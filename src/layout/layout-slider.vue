@@ -4,7 +4,7 @@
     :collapsible="collapsible"
     :trigger="null"
     :width="collapsed ? 80 : 240"
-    :class="['layout-sider', fixedSiderbar && 'layout-sider__fixed', menuTheme === 'light' && 'light-theme']"
+    :class="['layout-sider']"
   >
     <Logo />
     <Menu />
@@ -27,7 +27,7 @@ import Menu from "@/components/menu/index1.vue";
 export default {
   name: "LayoutSider",
   components: { Logo, Menu },
-  mixins: [appStoreMixin],
+  // mixins: [appStoreMixin],
   props: {
     collapsible: {
       type: Boolean,

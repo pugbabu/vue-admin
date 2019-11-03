@@ -1,5 +1,5 @@
 <template>
-  <div :class="['logo-wrapper', `logo-${menuTheme}`, collapsed && 'is-collapsed']">
+  <div :class="['logo-wrapper',collapsed && 'is-collapsed']">
     <img
       v-if="!collapsed"
       class="logo"
@@ -13,11 +13,11 @@
   </div>
 </template>
 <script>
-import { appStoreMixin, deviceMixin } from '@/mixins';
+import { appStoreMixin } from '@/mixins';
 
 export default {
   name: 'Logo',
-  mixins: [appStoreMixin, deviceMixin],
+  // mixins: [appStoreMixin],
   computed: {
     collapsed() {
       return this.$store.getters.collapsed;
