@@ -1,3 +1,4 @@
+import Vue from 'vue';
 const state = {
   collapsed: false,
   user: null,

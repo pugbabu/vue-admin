@@ -1,3 +1,4 @@
+
 module.exports =  [
   {
     /**
@@ -17,13 +18,6 @@ module.exports =  [
       url: '/ats/hoststat',
       requestTmp: 'HostStatRequest',
       responseTmp: 'HostStatReply'
-    }
-  },
-  {
-    oplog: {
-      url: '/ats/oplog',
-      requestTmp: 'OpLogRequest',
-      responseTmp: 'OpLogReply'
     }
   }
 ];

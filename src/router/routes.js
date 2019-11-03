@@ -2,7 +2,7 @@ import {BasicLayout, ViewLayout} from '@/layout/index.js';
 
 const routes = [
   {
-    path: '/login',
+    path: '/mss-login',
     name: 'login',
     component: () => import('@/pages/login')
   },

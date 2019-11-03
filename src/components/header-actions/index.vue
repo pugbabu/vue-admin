@@ -32,8 +32,9 @@ export default {
           okText: '注销',
           okType: 'danger',
           onOk () {
-           
-           
+            this.$store.commit('setUser', '');
+            this.$store.commit('setToken', '');
+            this.$router.push('/mss-login');
           },
           onCancel () {
             that.$message.warning('取消操作');
