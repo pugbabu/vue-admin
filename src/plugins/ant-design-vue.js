@@ -33,7 +33,8 @@ import {
   Progress,
   Tag,
   Switch,
-  Tabs
+  Tabs,
+  TreeSelect
 } from 'ant-design-vue';
 
 Vue.prototype.$message = message;
@@ -79,3 +80,5 @@ Vue.use(Tag);
 Vue.use(Switch);
 Vue.use(Tabs);
 Vue.use(Tabs.TabPane);
+Vue.use(TreeSelect);
+
