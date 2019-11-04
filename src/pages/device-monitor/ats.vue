@@ -51,6 +51,18 @@
         >
           {{ opDatetime | formatTime }}
         </span>
+        <span
+          slot="sourceId"
+          slot-scope="sourceId"
+        >
+          {{ sourceId | formatSourceId }}
+        </span>
+        <span
+          slot="resultCode"
+          slot-scope="resultCode"
+        >
+          {{ resultCode | formatResultCode }}
+        </span>
       </a-table>
     </div>
   </div>
@@ -60,49 +72,88 @@
 import WebsocketHeartbeatJs from "websocket-heartbeat-js";
 export default {
   name: "",
+  filters: {
+    formatResultCode(value) {
+      if (value === 0) {
+        return '操作成功';
+      } else if (value === 1) {
+        return '操作失败';
+      } else {
+        return '未知';
+      }
+    },
+    formatSourceId(value) {
+      switch(value) {
+        case 1:
+          return 'LCW';
+        case 2:
+          return '中心ATS';
+        case 0:
+          return '-';
+        default:
+          return '未知';
+      }
+    }
+  },
   data() {
     return {
       site: " ",
       msgSeq: 1,
       opLogs: [],
       sourceData: [
-        {
-          msgSeq: 1,
-          opSequence: 11,
-          opDatetime: 1572587607740,
-          sourceId: 2, //命令来源：1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
-          objectName: "大头",
-          opType: 1,
-          opMode: "",
-          opSubType: 2,
-          resultCode: "哈哈哈",
-          userName: "Hello"
-        },
-        {
-          msgSeq: 1,
-          opSequence: 11,
-          opDatetime: 1572587607740,
-          sourceId: 2, //命令来源：1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
-          objectName: "大头",
-          opType: 1,
-          opMode: "",
-          opSubType: 2,
-          resultCode: "哈哈哈",
-          userName: "Hello"
-        }
+        // {
+        //   msgSeq: 1,
+        //   opSequence: 11,
+        //   opDatetime: 1572587607740,
+        //   sourceId: 2, //命令来源：1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
+        //   objectName: "大头",
+        //   opType: 1,
+        //   opMode: "",
+        //   opSubType: 2,
+        //   resultCode: "哈哈哈",
+        //   userName: "Hello"
+        // },
+        // {
+        //   msgSeq: 1,
+        //   opSequence: 11,
+        //   opDatetime: 1572587607740,
+        //   sourceId: 2, //命令来源：1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
+        //   objectName: "大头",
+        //   opType: 1,
+        //   opMode: "",
+        //   opSubType: 2,
+        //   resultCode: "哈哈哈",
+        //   userName: "Hello"
+        // }
       ],
+      /**
+       * @param msgSeq  事务号
+       * @param opSequence 序列号
+       * @param opDatetime 时间（时间戳）
+       * @param sourceId 来源 1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
+       * @param objectName 被操作对象
+       * @param opType 操作类型
+       * @param opMode 操作模式
+       * @param opSubType 操作子类型
+       * @param resultCode 操作结果: 0：操作成功，1：操作失败
+       * @param userName 用户名
+       */
       columns: [
         { title: "事物号", dataIndex: "msgSeq", key: "1" },
         { title: "序列号", dataIndex: "opSequence", key: "2" },
         { title: "时间", dataIndex: "opDatetime", key: "3", scopedSlots: {
           customRender: 'opDatetime'
         }},
-        { title: "来源", dataIndex: "sourceId", key: "4" },
+        { title: "来源", dataIndex: "sourceId", key: "4", scopedSlots: {
+          customRender: 'sourceId'
+        }},
         { title: "被操作对象", dataIndex: "objectName", key: "5" },
         { title: "操作类型", dataIndex: "opType", key: "6" },
         { title: "操作模式", dataIndex: "opMode", key: "7" },
         { title: "操作子类型", dataIndex: "opSubType", key: "8" },
-        { title: "操作结果", dataIndex: "resultCode", key: "9" },
+        { title: "操作结果", dataIndex: "resultCode", key: "9", scopedSlots: {
+          customRender: 'resultCode'
+        }},
         { title: "用户名", dataIndex: "userName", key: "10" }
       ],
       hostStats: [
@@ -613,8 +664,12 @@ export default {
   },
   created() {
     this.getHostStatus();
-     this.logSocket = this.$socket.sendSock('ws://192.168.156.46:9005/ats/oplog', 'dsd', (res) => {
+    this.logSocket = this.$socket.sendSock('ws://192.168.156.46:9105/ats/oplog', {
+      responseTmp: 'OpLogReply'
+    }, (res) => {
+      console.log('HDSFD');
       console.log(res);
+      this.sourceData.push(res);
     });
   },
   destroyed() {
