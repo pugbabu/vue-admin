@@ -1,3 +1,4 @@
+<!-- ATS页面 -->
 <template>
   <div class="ats-container">
     <!-- 顶部站点选择 -->
@@ -42,89 +43,104 @@
       <a-table
         class="table-wrapper"
         :columns="columns"
-        :data-source="sourceData"
+        :data-source="opLogs"
         :pagination="false"
       >
+        <!-- 时间处理 -->
         <span
           slot="opDatetime"
           slot-scope="opDatetime"
+        >{{ opDatetime | formatTime }}</span>
+        <!-- 操作类型处理 -->
+        <span
+          slot="opType"
+          slot-scope="opType"
         >
-          {{ opDatetime | formatTime }}
+          <!-- {{ handleValue(opType, opType) }} -->
+          {{ opType | filterOptype }}
         </span>
+        <!-- 操作子类型处理 -->
+        <span
+          slot="opSubType"
+          slot-scope="opSubType"
+        >{{ opSubType | filterOpSubtype }}</span>
+        <!-- 来源处理 -->
         <span
           slot="sourceId"
           slot-scope="sourceId"
-        >
-          {{ sourceId | formatSourceId }}
-        </span>
+        >{{ sourceId | formatSourceId }}</span>
+        <!-- 操作结果处理 -->
         <span
           slot="resultCode"
           slot-scope="resultCode"
-        >
-          {{ resultCode | formatResultCode }}
-        </span>
+        >{{ resultCode | formatResultCode }}</span>
       </a-table>
     </div>
   </div>
 </template>
 
 <script>
-import WebsocketHeartbeatJs from "websocket-heartbeat-js";
+import { resultCode, sourceId, opType, opSubType, handleValue } from "./config";
 export default {
   name: "",
   filters: {
+    /**
+     * @param value
+     * @return 操作结果
+     */
     formatResultCode(value) {
-      if (value === 0) {
-        return '操作成功';
-      } else if (value === 1) {
-        return '操作失败';
-      } else {
-        return '未知';
-      }
+      return handleValue(value, resultCode);
     },
+    /**
+     * @param value
+     * @return 来源
+     */
     formatSourceId(value) {
-      switch(value) {
-        case 1:
-          return 'LCW';
-        case 2:
-          return '中心ATS';
-        case 0:
-          return '-';
-        default:
-          return '未知';
-      }
+      return handleValue(value, sourceId);
+    },
+    /**
+     * @param value
+     * @return 操作类型
+     */
+    filterOptype(value) {
+      return handleValue(value, opType);
+    },
+    /**
+     * @param value
+     * @return 操作子类型
+     */
+    filterOpSubtype(value) {
+      return handleValue(value, opSubType);
     }
   },
   data() {
     return {
-      site: " ",
       msgSeq: 1,
-      opLogs: [],
       sourceData: [
-        // {
-        //   msgSeq: 1,
-        //   opSequence: 11,
-        //   opDatetime: 1572587607740,
-        //   sourceId: 2, //命令来源：1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
-        //   objectName: "大头",
-        //   opType: 1,
-        //   opMode: "",
-        //   opSubType: 2,
-        //   resultCode: "哈哈哈",
-        //   userName: "Hello"
-        // },
-        // {
-        //   msgSeq: 1,
-        //   opSequence: 11,
-        //   opDatetime: 1572587607740,
-        //   sourceId: 2, //命令来源：1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
-        //   objectName: "大头",
-        //   opType: 1,
-        //   opMode: "",
-        //   opSubType: 2,
-        //   resultCode: "哈哈哈",
-        //   userName: "Hello"
-        // }
+        {
+          msgSeq: 1,
+          opSequence: 11,
+          opDatetime: 1572849150000,
+          sourceId: 1, //命令来源：1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
+          objectName: "大头",
+          opType: 416,
+          opMode: "",
+          opSubType: 769,
+          resultCode: 1,
+          userName: "Hello"
+        },
+        {
+          msgSeq: 1,
+          opSequence: 11,
+          opDatetime: 1572849150000,
+          sourceId: 2, //命令来源：1：LCW；2：中心ATS；3：车站ATS；0：-；其他：未知
+          objectName: "大头",
+          opType: 418,
+          opMode: "",
+          opSubType: 260,
+          resultCode: 0,
+          userName: "Hello"
+        }
       ],
       /**
        * @param msgSeq  事务号
@@ -141,19 +157,48 @@ export default {
       columns: [
         { title: "事物号", dataIndex: "msgSeq", key: "1" },
         { title: "序列号", dataIndex: "opSequence", key: "2" },
-        { title: "时间", dataIndex: "opDatetime", key: "3", scopedSlots: {
-          customRender: 'opDatetime'
-        }},
-        { title: "来源", dataIndex: "sourceId", key: "4", scopedSlots: {
-          customRender: 'sourceId'
-        }},
+        {
+          title: "时间",
+          dataIndex: "opDatetime",
+          key: "3",
+          scopedSlots: {
+            customRender: "opDatetime"
+          }
+        },
+        {
+          title: "来源",
+          dataIndex: "sourceId",
+          key: "4",
+          scopedSlots: {
+            customRender: "sourceId"
+          }
+        },
         { title: "被操作对象", dataIndex: "objectName", key: "5" },
-        { title: "操作类型", dataIndex: "opType", key: "6" },
+        {
+          title: "操作类型",
+          dataIndex: "opType",
+          key: "6",
+          scopedSlots: {
+            customRender: "opType"
+          }
+        },
         { title: "操作模式", dataIndex: "opMode", key: "7" },
-        { title: "操作子类型", dataIndex: "opSubType", key: "8" },
-        { title: "操作结果", dataIndex: "resultCode", key: "9", scopedSlots: {
-          customRender: 'resultCode'
-        }},
+        {
+          title: "操作子类型",
+          dataIndex: "opSubType",
+          key: "8",
+          scopedSlots: {
+            customRender: "opSubType"
+          }
+        },
+        {
+          title: "操作结果",
+          dataIndex: "resultCode",
+          key: "9",
+          scopedSlots: {
+            customRender: "resultCode"
+          }
+        },
         { title: "用户名", dataIndex: "userName", key: "10" }
       ],
       hostStats: [
@@ -660,27 +705,65 @@ export default {
       ],
       socket: null,
       logSocket: null,
+      hostSocket: null
     };
   },
-  created() {
-    this.getHostStatus();
-    this.logSocket = this.$socket.sendSock('ws://192.168.156.46:9105/ats/oplog', {
-      responseTmp: 'OpLogReply'
-    }, (res) => {
-      console.log('HDSFD');
-      console.log(res);
-      this.sourceData.push(res);
-    });
-  },
-  destroyed() {
-    // readyState  0- 正在链接中 1- 已经链接并且可以通讯 2-连接正在关闭 3-连接已关闭或者没有链接成功
-    if (this.logSocket.readyState == 1) {
-      this.logSocket.close();
+  computed: {
+    opLogs() {
+      return this.$store.getters.opLogs;
     }
   },
+  created() {
+    // this.initHostStatus();
+    this.initOpLog();
+  },
+  /**
+   * @description 离开页面时，执行destroyed钩子
+   */
+  destroyed() {
+    this.destroyWebsocket();
+  },
   methods: {
-    handleChange(e) {
-      console.log(e);
+    /**
+     * @description 初始化主机管理的websocket连接
+     */
+    initHostStatus() {
+      this.logSocket = this.$socket.sendSock(
+        "ws://192.168.156.46:9105/ats/hoststat",
+        {
+          responseTmp: "HostStatReply"
+        },
+        res => {
+          console.log(res, 'host主机');
+        }
+      );
+    },
+    /**
+     * @description 初始化操作记录的websocket连接
+     */
+    initOpLog() {
+      this.logSocket = this.$socket.sendSock(
+        "ws://192.168.156.46:9105/ats/oplog",
+        {
+          responseTmp: "OpLogReply"
+        },
+        res => {
+          this.opLogs.unshift(res);
+          this.$store.commit("setOpLogs", this.opLogs);
+        }
+      );
+    },
+    /**
+     * @description 离开页面时，断开websocket连接，是否要断开可以根据业务需求
+     */
+    destroyWebsocket() {
+      // readyState  0- 正在链接中 1- 已经链接并且可以通讯 2-连接正在关闭 3-连接已关闭或者没有链接成功
+      if (this.logSocket && this.logSocket.readyState == 1) {
+        this.logSocket.close();
+      }
+      if (this.hostSocket && this.hostSocket.readyState == 1) {
+        this.hostSocket.close();
+      }
     },
     getHostStatus() {
       this.$api
@@ -694,8 +777,7 @@ export default {
           console.log(res);
           // this.hostStats = res.hostStats || [];
         });
-    },
-
+    }
   }
 };
 </script>

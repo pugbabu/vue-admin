@@ -8,26 +8,15 @@
   >
     <Logo />
     <Menu />
-    <!-- <Menu
-      :menu-items="menuItems"
-      :default-selected-keys="['1']"
-    /> -->
   </a-layout-sider>
 </template>
 
 <script>
-import { appStoreMixin } from "@/mixins";
 import Logo from "@/components/logo";
-// import Menu from "@/components/menu/navigation-bar";
-// import Menu from "@/components/menu";
 import Menu from "@/components/menu/index1.vue";
-
-
-
 export default {
   name: "LayoutSider",
   components: { Logo, Menu },
-  // mixins: [appStoreMixin],
   props: {
     collapsible: {
       type: Boolean,

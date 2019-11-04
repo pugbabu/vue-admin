@@ -1,17 +1,17 @@
-<!--  -->
 <template>
-  <div />
+  <div>我是设备监控的ZC页面</div>
 </template>
 
 <script>
 export default {
+  name: '',
   data () {
-     return {
-     };
+    return {
+      
+    };
   },
-  created() {
-  }
- };
+  methods: {}
+};
 </script>
 
 <style scoped>

@@ -4,6 +4,8 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
+import {default as initStore} from './store/init-store';
+
 import './plugins';
 import api from './api'; // 引入接口请求文件
 import moment from 'moment'; // 时间处理模块
@@ -23,5 +25,8 @@ Vue.prototype.$moment = moment;
 new Vue({
   router,
   store,
+  created () {
+    initStore();
+  },
   render: h => h(App)
 }).$mount('#app');

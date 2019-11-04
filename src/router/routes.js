@@ -26,42 +26,11 @@ const routes = [
             path: 'ats',
             name: 'ats',
             component: () => import('@/pages/device-monitor/ats')
-          }
-        ]
-      },
-      {
-        path: 'sdm',
-        name: 'sdm',
-        component: ViewLayout,
-        children: [
-          {
-            path: 'cc',
-            name: 'sdm-cc',
-            component: () => import('@/pages/sdm/cc')
           },
           {
             path: 'zc',
-            name: 'sdm-zc',
-            component: () => import('@/pages/sdm/zc')
-
-          }
-        ]
-      },
-      {
-        path: 'ccm',
-        name: 'ccm',
-        component: ViewLayout,
-        children: [
-          {
-            path: 'cc',
-            name: 'ccm-cc',
-            component: () => import('@/pages/ccm/cc')
-          },
-          {
-            path: 'zc',
-            name: 'ccm-zc',
-            component: () => import('@/pages/ccm/zc')
-
+            name: 'zc',
+            component: () => import('@/pages/device-monitor/zc')
           }
         ]
       }

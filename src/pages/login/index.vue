@@ -134,17 +134,14 @@ export default {
           }, 600);
           return;
         }
-        alert(323);
         // 调用登录接口
         this.$store.commit('setUser', '大头大头');
         this.$store.commit('setToken', '79faf82271944fe38c4f1d99be71bc9c');
-        alert(3);
         this.loginSuccess();
       });
     },
     loginSuccess () {
       this.$nextTick(() => {
-        alert(32);
         this.$router.push('/');
       });
 

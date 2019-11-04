@@ -5,18 +5,19 @@
     mode="inline"
     theme="dark"
     :inlineCollapsed="collapsed"
+    @click="handleMenuClick"
   >
     <template v-for="item in menuItems">
       <a-menu-item
         v-if="!item.children"
-        :key="item.id"
+        :key="item.path"
       >
         <img :src="item.iconSrc" />
         <span>{{ item.title }}</span>
       </a-menu-item>
       <a-sub-menu
         v-else
-        :key="item.id"
+        :key="item.path"
         :menu-info="item"
       >
         <template slot="title">
@@ -26,7 +27,7 @@
       
         <a-menu-item
           v-for="subItem in item.children"
-          :key="subItem.id"
+          :key="subItem.path"
         >
           {{ subItem.title }}
         </a-menu-item>
@@ -56,6 +57,12 @@
               icon: "",
               path: "/device/ats",
               title: "ATS"
+            },
+            {
+              id: "22",
+              icon: "",
+              path: "/device/zc",
+              title: "ZC"
             }
           ]
         }
@@ -68,7 +75,9 @@
       }
     },
     methods: {
-  
+      handleMenuClick(item) {
+        this.$router.push(item.key);
+      }
     },
   };
 </script>

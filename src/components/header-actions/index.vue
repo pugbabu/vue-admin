@@ -18,6 +18,7 @@ export default {
   },
   computed: {
     username() {
+      console.log(this.$store.getters);
       let user = this.$store.getters.user;
       return user;
     }
