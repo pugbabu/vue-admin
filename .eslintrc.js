@@ -14,7 +14,6 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-trailing-spaces': 'off',
-    semi: ['error', 'never'],
     'no-tabs': 'off',
     'no-undef': 'off',
     'no-unused-vars': 'off',
