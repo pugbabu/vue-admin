@@ -7,6 +7,19 @@ const routes = [
     component: () => import('@/pages/login')
   },
   {
+    path: '/error',
+    name: 'error',
+    redirect: '404',
+    component: ViewLayout,
+    children: [
+      {
+        path: '404',
+        name: '404',
+        component: () => import('@/pages/error/404.vue')
+      }
+    ]
+  },
+  {
     path: '/',
     name: 'index',
     redirect: '/device/ats',

@@ -27,10 +27,11 @@ router.beforeEach((to, from, next) => {
       next();
     }
   } else {
+    console.log(to.name);
     if (whiteList.includes(to.name)) {
       next();
     } else {
-      next({path: '/login'});
+      next({path: '/mss-login'});
     }
   }
 });
