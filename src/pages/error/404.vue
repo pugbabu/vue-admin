@@ -1,7 +1,7 @@
 <template>
   <div class="error-page">
     <div class="content">
-      <p>抱歉，找不到您访问的资源啦</p>
+      <p>抱歉，找不到您访问的资源啦~</p>
       <img src="../../assets/images/404.png" />
     </div>
   </div>
@@ -12,6 +12,9 @@ export default {};
 </script>
 
 <style lang="less" scoped>
+.error-page{
+  padding-top: 100px;
+}
 .content{
   width: 500px;
   display: flex;
@@ -19,6 +22,9 @@ export default {};
   flex-direction: column;
   text-align: center;
   margin: 0 auto;
-  margin-top: 100px;
+  p{
+    font-size: 16px;
+    color: #000;
+  }
 }
 </style>

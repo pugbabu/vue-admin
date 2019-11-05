@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/error',
     name: 'error',
-    redirect: '404',
+    redirect: '/error/404',
     component: ViewLayout,
     children: [
       {
