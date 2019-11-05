@@ -33,9 +33,9 @@ export default {
           okText: '注销',
           okType: 'danger',
           onOk () {
-            this.$store.commit('setUser', '');
-            this.$store.commit('setToken', '');
-            this.$router.push('/mss-login');
+            that.$store.commit('setUser', '');
+            that.$store.commit('setToken', '');
+            that.$router.push('/mss-login');
           },
           onCancel () {
             that.$message.warning('取消操作');
@@ -50,16 +50,11 @@ export default {
 <style lang="less" scoped>
   .actions-wrapper {
     overflow: hidden;
-    
-    .actions-trigger {
-      transform: rotate(90deg);
-      cursor: pointer;
-      color: #fff;
-    }
-    
+    height: 100%;
+    display: flex;
+    align-items: center;
     .action {
       display: inline-block;
-      height: 100%;
       padding: 0 12px;
       overflow: hidden;
       cursor: pointer;

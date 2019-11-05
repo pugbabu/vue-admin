@@ -2,11 +2,10 @@
 <template>
   <div class="login">
     <a-card
-      style="width: 460px;"
-      :body-style="{padding: '84px 64px'}"
+      class="login-box"
     >
       <div class="logo-wrapper">
-        <span class="title">众合科技有限公司</span>
+        <img src="../../assets/images/login_logo.png" />
       </div>
       <a-form
         :form="form"
@@ -97,7 +96,6 @@
             :loading="loading"
             :disabled="loading"
             size="large"
-            type="primary"
             class="login-button"
             @click="handleLogin"
           >
@@ -111,8 +109,6 @@
 
 <script>
 import ValidateCode from "@/components/validate-code";
-import { timeFix } from '@/utils/time';
-
 export default {
   components: {
     ValidateCode
@@ -135,7 +131,7 @@ export default {
           return;
         }
         // 调用登录接口
-        this.$store.commit('setUser', '大头大头');
+        this.$store.commit('setUser', username);
         this.$store.commit('setToken', '79faf82271944fe38c4f1d99be71bc9c');
         this.loginSuccess();
       });
@@ -144,12 +140,12 @@ export default {
       this.$nextTick(() => {
         this.$router.push('/');
       });
-
+      let description = this.$utils.timeFix();
       // 延迟 1 秒显示欢迎信息
       setTimeout(() => {
         this.$notification.success({
           message: '欢迎',
-          description: `${timeFix()}，欢迎回来`
+          description: `${description}，欢迎回来`
         });
       }, 1000);
     },
@@ -170,44 +166,55 @@ export default {
   }
 };
 </script>
+<style>
+.login-box .ant-card-body{
+  padding: 0 !important;
+
+}
+</style>
 
 <style lang="less" scoped>
 .login {
-  position: relative;
-  min-height: 100vh;
+  width: 1920px;
+  height:1080px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  // position: relative;
+  // min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f0f2f5 url("../../assets/images/login_bg.png");
-  background-size: cover;
+  background:  url("../../assets/images/login_bg.png");
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-
+  .login-box{
+    width: 300px;
+    position: absolute;
+    top: 350px;
+    left: 1150px;
+    border: 0;
+    background: unset;
+  }
   .logo-wrapper {
-    margin-bottom: 38px;
-    text-align: center;
-    user-select: none;
+    width: 200px;
+    height: 45px;
+    margin: 0 auto;
 
-    .logo {
-      display: inline-block;
-      width: 80px;
-      margin-right: 16px;
-    }
-
-    .title {
-      font-size: 32px;
-      font-weight: bolder;
-      font-family: "Ink Free";
-    }
   }
 
   .login-form {
     margin: 0 auto;
-
+    margin-top: 20px;
     .login-button {
       padding: 0 15px;
       font-size: 16px;
       height: 40px;
+      background-color: #8c98cc;
+      border: 1px solid #8c98cc;
       width: 100%;
+      color: #fff;
+      border-radius: 25px;
     }
   }
 

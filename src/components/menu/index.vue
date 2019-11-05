@@ -1,196 +1,86 @@
-<script>
-import { appStoreMixin } from "@/mixins";
-import { generateOpenKeys } from "@/utils";
+<template>
+  <a-menu
+    class="zh-menu"
+    :defaultSelectedKeys="['2']"
+    mode="inline"
+    theme="dark"
+    :inlineCollapsed="collapsed"
+    @click="handleMenuClick"
+  >
+    <template v-for="item in menuItems">
+      <a-menu-item
+        v-if="!item.children"
+        :key="item.path"
+      >
+        <img :src="item.iconSrc" />
+        <span>{{ item.title }}</span>
+      </a-menu-item>
+      <a-sub-menu
+        v-else
+        :key="item.path"
+        :menu-info="item"
+      >
+        <template slot="title">
+          <img :src="item.iconSrc" />
+          <span>{{ item.title }}</span>
+        </template>
+      
+        <a-menu-item
+          v-for="subItem in item.children"
+          :key="subItem.path"
+        >
+          {{ subItem.title }}
+        </a-menu-item>
+      </a-sub-menu>
+    </template>
+  </a-menu>
+</template>
 
-export default {
-  // mixins: [appStoreMixin],
-  props: {
-    mode: {
-      type: String,
-      default: "inline"
-    }
-  },
-  data() {
-    return {
-      selectedKeys: [],
-      openKeys: [],
-      cacheOpenKeys: [],
-      menus: [
+<script>
+  export default {
+    data() {
+      return {
+        menuItems: [
         {
-          id: '1',
-          icon: 'dashboard',
-          name: 'permission',
-          title: '权限管理',
+          id: "1",
+          title: "权限管理",
+          iconSrc: require("../../assets/svg/alarm.svg"),
           path: '/permission'
         },
         {
-          id: "1",
-          icon: "table",
-          path: "/device",
-          name: "device",
+          id: "2",
           title: "设备监控",
+          iconSrc:require("../../assets/svg/alarm.svg"),
           children: [
-            {
-              id: "11",
+             {
+              id: "21",
               icon: "",
               path: "/device/ats",
-              name: "ats",
               title: "ATS"
+            },
+            {
+              id: "22",
+              icon: "",
+              path: "/device/zc",
+              title: "ZC"
             }
           ]
-        },
+        }
       ]
-    };
-  },
-  computed: {
-    // menus() {
-    //   return this.$store.getters.menus;
-    // },
-    collapsed() {
-      return this.$store.getters.collapsed;
+      };
     },
-    isSide() {
-      return (
-        this.layoutMode === "side" ||
-        (this.layoutMode === "top" && this.isMobile)
-      );
-    }
-  },
-  watch: {
-    collapsed(val) {
-      if (val) {
-        this.cacheOpenKeys = [].concat(this.openKeys);
-        this.openKeys = [];
-      } else {
-        this.openKeys = this.cacheOpenKeys;
+    computed: {
+      collapsed() {
+        return this.$store.getters.collapsed;
       }
     },
-    $route(val) {
-      this.updateMenu();
-    }
-  },
-  created() {
-    this.updateMenu();
-  },
-  methods: {
-    onOpenChange(openKeys) {
-      const latestOpenKey = openKeys[openKeys.length - 1];
-      const keyPath = latestOpenKey ? latestOpenKey.split("/") : [];
-      keyPath.shift();
-      this.openKeys = generateOpenKeys(keyPath);
-    },
-    handleMenuClick({ item, key, keyPath }) {
-      this.selectedKeys = [keyPath[0]];
-      this.$router.push(key);
-      this.$emit("close");
-    },
-    updateMenu() {
-      // fullPath : '/customs/export/query'
-      let openKeys = [];
-      const { fullPath } = this.$route;
-      const keyPath = fullPath.split("/");
-      keyPath.shift();
-      keyPath.pop();
-      this.selectedKeys = [fullPath];
-
-      if (this.mode === "inline") {
-        openKeys = generateOpenKeys(keyPath);
+    methods: {
+      handleMenuClick(item) {
+        this.$router.push(item.key);
       }
-
-      this.collapsed
-        ? (this.cacheOpenKeys = openKeys)
-        : (this.openKeys = openKeys);
-    }
-  },
-  render() {
-    const {
-      isSide,
-      menuTheme,
-      mode,
-      openKeys,
-      selectedKeys,
-      $route,
-      menus,
-      handleMenuClick,
-      onOpenChange
-    } = this;
-
-    const menuWrapClass = [
-      "lu-menu",
-      isSide && "lu-menu__side",
-      `lu-menu__${menuTheme}`
-    ];
-
-    const menuProps = {
-      mode,
-      openKeys,
-      selectedKeys,
-      theme: 'menuTheme',
-      defaultSelectedKeys: [$route.path]
-    };
-
-    const menuEvent = {
-      click: handleMenuClick,
-      openChange: onOpenChange
-    };
-
-    // 递归生成菜单
-    function generateMenu(menus) {
-      if (menus) {
-        return menus.map(menu => {
-          if (menu.children && menu.children.length) {
-            return (
-              <a-sub-menu key={menu.path}>
-                <span slot="title">
-                  {menu.icon && <a-icon type={menu.icon} />}
-                  <span>{menu.title}</span>
-                </span>
-                {generateMenu(menu.children)}
-              </a-sub-menu>
-            );
-          } else {
-            return (
-              <a-menu-item key={menu.path}>
-                {menu.icon && <a-icon type={menu.icon} />}
-                <span>{menu.title}</span>
-              </a-menu-item>
-            );
-          }
-        });
-      }
-    }
-
-    return (
-      <div class={menuWrapClass}>
-        <a-menu props={menuProps} on={menuEvent}>
-          {generateMenu(menus)}
-        </a-menu>
-      </div>
-    );
-  }
-};
+    },
+  };
 </script>
-<style lang="less" scoped>
-.lu-menu {
-  &.lu-menu__side {
-    border-top: 1px solid #3d4348;
-    &.lu-menu__light {
-      border-top-color: rgba(61, 67, 72, 0.1);
-    }
-  }
-}
-
-.ant-menu {
-  background: transparent;
-
-  &.ant-menu-horizontal {
-    height: 65px;
-    line-height: 65px;
-  }
-
-  .ant-menu-inline.ant-menu-sub {
-    background: rgba(37, 37, 37, 1);
-    box-shadow: none;
-  }
-}
+<style >
+@import "../../assets/styles/zh-menu.css";
 </style>

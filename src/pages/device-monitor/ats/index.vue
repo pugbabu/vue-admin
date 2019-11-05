@@ -255,7 +255,6 @@ export default {
           responseTmp: "HostStatReply"
         },
         res => {
-          console.log(res, 'host主机');
           this.hostStats = res.hostStats;
         }
       );

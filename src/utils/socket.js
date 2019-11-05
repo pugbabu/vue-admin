@@ -1,5 +1,11 @@
+/**
+ * @description websocket请求封装
+ * @author dalei
+ * @param url 请求地址
+ * @param option 请求的一些参与，可配置请求响应的解析体
+ * @param callback 回调函数
+ */
 import protoRoot from '@/proto/proto';
-import protobuf from 'protobufjs';
 // 实际调用的方法
 function sendSock(url, option, callback) {
   let socket = null;
@@ -7,12 +13,6 @@ function sendSock(url, option, callback) {
   console.log(option);
   let responseProto = protoRoot.lookupType(option.responseTmp);
   socket.onmessage = function (res) {
-    console.log('接受数据');
-    console.log('~~~~~~~~~~~~~~~~');
-    console.log(res);
-    // const buf = new Uint8Array(res.data);
-    // const resData = responseProto.decode(buf);
-    // const ResponseUser = protoRoot.lookup('com.example.nettydemo.protobuf.ResponseUser');
     var reader = new FileReader();
     reader.readAsArrayBuffer(res.data);
     reader.onload = function (e) {
@@ -35,8 +35,6 @@ function sendSock(url, option, callback) {
 }
 
 
-
-// 将方法暴露出去
 export {
   sendSock
 };

@@ -5,6 +5,7 @@
   >
     <div class="header-left">
       <a-icon
+        :style="{color:'#F39800'}"
         class="trigger"
         :type="collapsed ? 'menu-unfold' : 'menu-fold'"
         @click="changeCollapsed"
@@ -13,11 +14,6 @@
     <div class="header-right">
       <header-actions />
     </div>
-    <!-- <a-icon
-      class="trigger"
-      :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-      @click="changeCollapsed"
-    /> -->
   </a-layout-header>
 </template>
 
@@ -45,35 +41,22 @@ export default {
 
 <style lang="less" scoped>
  .layout-header {
-    padding: 0 16px 0 0;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     transition: all 0.3s;
     z-index: 100;
-    background: #fff;
-    
-    &.layout-header__dark {
-      background: linear-gradient(180deg, #31363c 0%, #16191c 100%);
-      color: #fff;
-      
-      .trigger {
-        color: #fff;
-      }
-    }
-    
-    &.layout-header__light {
-      background-color: #fff;
-      box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-    }
-    
-    &.layout-header__fixed {
-      position: fixed;
-      right: 0;
-      top: 0;
-    }
+    background: var(--dark1);
+    color: #fff;
+    align-items: center;
+    padding: 0;
+    padding-right: 20px;
     
     .header-left {
       display: flex;
+    }
+    .header-right{
+      height: 100%;
     }
     
     .trigger {

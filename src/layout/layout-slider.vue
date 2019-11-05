@@ -13,7 +13,7 @@
 
 <script>
 import Logo from "@/components/logo";
-import Menu from "@/components/menu/index1.vue";
+import Menu from "@/components/menu/index.vue";
 export default {
   name: "LayoutSider",
   components: { Logo, Menu },
